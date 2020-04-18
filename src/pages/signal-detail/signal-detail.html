@@ -1,0 +1,60 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Fermer</button>
+    </ion-buttons>
+    <ion-title>Signalement</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+
+  <div>
+    <p>
+      {{date}}
+
+      <span *ngIf="categoryId != null"> -
+        <ion-badge class="badge--squared" item-end [color]="getSignalTypeColor(categoryId)">{{ getSignalTypeString(categoryId)}}</ion-badge>
+     </span>
+
+      <span *ngIf="nb_confirmation"> - {{nb_confirmation}} confirmation(s)</span>
+      <span *ngIf="!nb_confirmation"> - aucune confirmation</span>
+
+
+        <ion-badge *ngIf="etat == 1 && online" item-end color="danger">nouveau</ion-badge>
+        <ion-badge *ngIf="etat == 2 && online" item-end color="danger">vu</ion-badge>
+        <ion-badge *ngIf="etat == 3 && online" item-end>en cours</ion-badge>
+        <ion-badge *ngIf="etat == 4 && online" item-end>traité</ion-badge>
+        <ion-badge *ngIf="!online && etatModere < 3" item-end color="dark">en cours de validation</ion-badge>
+        <ion-badge *ngIf="!online && etatModere == 3 " item-end color="dark">archivé par le modérateur</ion-badge>
+        <ion-badge *ngIf="!online && etatModere == 4 " item-end color="dark">supprimé par le modérateur</ion-badge>
+
+    </p>
+
+
+    <h1>{{titre}}</h1>
+
+
+    <h3>{{adresse}}</h3>
+
+    <div [innerHTML]="texte"></div>
+
+    <h3 *ngIf="commentaire">Commentaire Organisme : </h3>
+    <div *ngIf="commentaire">
+
+      <div [innerHTML]="commentaire"></div>
+    </div>
+
+  </div>
+
+  <div padding>
+    <button *ngIf="online" ion-button color="danger" block (click)="confirmer()">CONFIRMER CE SIGNALEMENT</button>
+  </div>
+
+  <img src="{{photo}}" />
+
+</ion-content>

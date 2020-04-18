@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Créer un compte</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <form [formGroup]="OneForm">
+    <p>
+      Merci de remplir soigneusement les champs ci-dessous afin de profiter pleinement des fonctionnalités de l'application.
+    </p>
+
+<ion-list>
+
+     <ion-item >
+    <ion-label stacked>Votre email *</ion-label>
+    <ion-input formControlName="email" type="email" value=""></ion-input>
+  </ion-item>
+
+  <ion-item *ngIf="OneForm.controls.email.hasError('required') && OneForm.controls.email.touched">
+  <p>Vous devez renseigner un email !</p>
+</ion-item>
+<ion-item *ngIf="OneForm.controls.email.hasError('pattern') && OneForm.controls.email.touched">
+  <p>Entrez un email valide !</p>
+</ion-item>
+
+
+  <ion-item>
+    <ion-label stacked>Mot de passe *</ion-label>
+    <ion-input formControlName="passwd" type="password" value=""></ion-input>
+  </ion-item>
+
+ <ion-item *ngIf="OneForm.controls.passwd.hasError('required') && OneForm.controls.passwd.touched">
+  <p>Vous devez renseigner un mot de passe !</p>
+</ion-item>
+<ion-item *ngIf="OneForm.controls.passwd.hasError('minlength') && OneForm.controls.passwd.touched">
+  <p>Entrez un mot de passe d'au moins 8 caractères !</p>
+</ion-item>
+
+  <ion-item>
+    <ion-label text-wrap>OBLIGATOIRE : En cochant cette case, je certifie être majeur.</ion-label>
+    <ion-checkbox formControlName="majeur"></ion-checkbox>
+  </ion-item>
+  <ion-item *ngIf="OneForm.controls.majeur.hasError('requiredTrue') && OneForm.controls.majeur.touched">
+  <p>Vous devez cocher cette case pour continuer si vous êtes majeur.</p>
+</ion-item>
+
+
+
+</ion-list>
+
+<div padding>
+  <p>En cliquant sur créer un compte, vous <a href="https://politeiafrance.com/conditions-generales-d-utilisations" target="_blank">acceptez nos conditions générales</a> et indiquez que vous avez lu notre politique d’utilisation des données.</p>
+
+    <button ion-button [disabled]="!OneForm.valid" color="primary" block (click)="enregistrer()" >Créer mon compte</button>
+  </div>
+
+
+
+
+</form>
+
+
+</ion-content>

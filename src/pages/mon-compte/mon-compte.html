@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Mon compte</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <form *ngIf="TwoForm" [formGroup]="TwoForm">
+    <ion-list>
+      <h3 text-center margin-top>Modifier vos informations</h3>
+
+      <ion-item>
+        <ion-label stacked>Nom</ion-label>
+        <ion-input formControlName="nom" type="text" value=""></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Prénom</ion-label>
+        <ion-input formControlName="prenom" type="text" value=""></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label stacked>Adresse</ion-label>
+        <!--   <ion-input formControlName="adresse" type="text" value=""></ion-input> -->
+        <ion-input formControlName="adresse" type="text" value="" (input)="updateSearchResults()"></ion-input>
+      </ion-item>
+
+      <ion-item class="listAdress" [hidden]="autocompleteItems && autocompleteItems.length == 0">
+        <ion-list>
+          <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
+            {{ item.description }}
+          </ion-item>
+        </ion-list>
+      </ion-item>
+
+
+      <ion-item (click)="searchMairie($event)">
+        <ion-label stacked>Ville</ion-label>
+        <ion-input formControlName="ville" class="noFocus" type="text" value="{{maVille}}"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <div padding>
+      <button ion-button color="primary" block (click)="saveInfos()">Enregistrer</button>
+    </div>
+  </form>
+
+
+
+</ion-content>

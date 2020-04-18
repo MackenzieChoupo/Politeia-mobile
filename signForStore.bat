@@ -1,0 +1,1 @@
+jarsigner  -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore politeia.keystore "app-release-unsigned.apk" politeiaKS --storepass poli17932486 && zipalign -v 4 "app-release-unsigned.apk" politeia.apk

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "847637511902",
+    "firebase_url": "https://politeia-209313.firebaseio.com",
+    "project_id": "politeia-209313",
+    "storage_bucket": "politeia-209313.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:847637511902:android:9a1a443de0755d31",
+        "android_client_info": {
+          "package_name": "fr.politeiafrance.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "847637511902-5hio3q16g71r6egitihuu1jhnhkql811.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDT71BKTyJAQNmGzS9beBMIdjggLy26eW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "847637511902-5hio3q16g71r6egitihuu1jhnhkql811.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "847637511902-mp55vdvdj88n3dmpktraho2f6te12sge.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "fr.politeiafrance.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

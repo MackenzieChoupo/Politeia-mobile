@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>POLITEIA FRANCE</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding>
+  <ion-grid no-padding>
+
+    <ion-row no-padding>
+      <ion-col col-12 col-sm push-sm-6>
+
+        <ion-card  *ngIf="alertePCS" color="danger" (click)="switchPCS()">
+
+          <ion-card-content>
+            <h1><ion-icon name="warning" color=""></ion-icon> {{PCSTitre}}</h1>
+
+            <div [innerHtml]="PCSTexte" [hidden]="!PCSdetail">
+            </div>
+
+          </ion-card-content>
+
+          <ion-row>
+
+            <ion-col center text-right>
+              <ion-note color="light" [hidden]="PCSdetail">
+                plus de détails
+              </ion-note>
+              <ion-note color="light" [hidden]="!PCSdetail">
+                moins de détails
+              </ion-note>
+            </ion-col>
+          </ion-row>
+
+        </ion-card>
+      </ion-col>
+
+      <ion-col col-12 col-sm pull-sm-6>
+        <div no-padding class="card-background-page">
+          <ion-card (click)="openModalInfosMairie(villeAfficheId)">
+            <img src="{{villeAfficheImage}}" />
+            <div class="card-title">{{villeAfficheNom}}</div>
+            <div class="card-subtitle "><b>{{villeAfficheBaseLine}}</b></div>
+
+            <button ion-button color="light" icon-start round style="position: absolute; right: 1rem; bottom: 1rem;        box-shadow: 0 1px 1px 0 rgba(60,64,67,.08), 0 1px 3px 1px rgba(60,64,67,.16);
+            padding: 0 1.5rem;
+            font-size: 1.25rem;" >
+              <ion-icon name="information-circle-outline"></ion-icon> Infos
+            </button>
+          </ion-card>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 >
+        <ion-card *ngFor="let n of news" (click)="openModalWithParams(n.id)">
+          <ion-item>
+            <ion-avatar item-start>
+              <img src="assets/img/marianne-logo.png">
+            </ion-avatar>
+            <h2 text-wrap>{{n.titre}}</h2>
+            <p>{{n.date}}</p>
+          </ion-item>
+
+          <ion-card-content>
+            {{n.resume}}
+          </ion-card-content>
+          <ion-row>
+
+            <ion-col center text-right>
+              <ion-note color="danger">
+                plus de détails
+              </ion-note>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

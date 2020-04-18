@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Ma sélection</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+    <form [formGroup]="OneForm">
+    <p>Choisissez l'organisme que vous souhaitez suivre</p>
+
+    <ion-item>
+      <ion-label stacked>Organisme *</ion-label>
+      <ion-select formControlName="ville" cancelText="Annuler">
+        <ion-option *ngFor="let ville of villes" value="{{ville.id}}">{{ville.nom}}</ion-option>
+      </ion-select>
+
+    </ion-item>
+
+      <div padding>
+        <p style="color:#f44336">Si vous ne trouvez pas votre organisme, <a (click)="addmairie(event)">cliquez ici</a>, pour lui faire connaître Politeia France.</p>
+      </div>
+
+    <ion-item *ngIf="OneForm.controls.ville.hasError('required') && OneForm.controls.ville.touched">
+  <p>Vous devez renseigner votre organisme !</p>
+</ion-item>
+
+
+  <div padding>
+      <button ion-button [disabled]="!OneForm.valid" color="primary" block (click)="goToRegister()">Suivant</button>
+    </div>
+
+</form>
+
+</ion-content>

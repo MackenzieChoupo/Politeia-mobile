@@ -1,0 +1,11 @@
+<ion-list>
+      <ion-list-header>{{ isMyCompte ? 'Mon organisme' : 'Ajoutez un organisme' }}</ion-list-header>
+      <ion-searchbar placeholder="Plus d'organismes"  (ionInput)="getItems($event)"></ion-searchbar>
+
+      <ion-spinner *ngIf="!items || (items && items.length < 1)"></ion-spinner>
+      <button ion-item  *ngFor="let item of items" (click)="close(item)">{{item.nom}}</button>
+</ion-list>
+
+<p padding style="margin-bottom: 2rem; display: block;">
+Si vous ne trouvez pas votre organisme, c'est qu'il n'est pas encore inscrit sur Politeia France. <a (click)="addmairie(event)">Cliquez ici, pour lui faire connaître.</a>
+</p>

@@ -1,0 +1,17 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Paramètres</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+      <ion-list-header>Notifications</ion-list-header>
+    <ion-item *ngFor="let nT of notificationsSettings">
+      <ion-label>{{nT.title}}</ion-label>
+      <ion-toggle [(ngModel)]="nT.checked" (ngModelChange)="propertyToggled(nT)" [disabled]="nT.disabled" color="primary" [checked]="nT.checked"></ion-toggle>
+    </ion-item>
+  </ion-list>
+</ion-content>

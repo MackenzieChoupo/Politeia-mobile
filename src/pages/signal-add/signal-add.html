@@ -1,0 +1,65 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Fermer</button>
+    </ion-buttons>
+    <ion-title>Signaler un problème</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <p style="text-align: center">Signalez ici des problèmes sur l'espace public.<br>Tout signalement n'allant pas dans ce sens sera supprimé.</p>
+  <form [formGroup]="OneForm">
+
+    <ion-list *ngIf="signalementsProches != undefined && signalementsProches.length>0">
+      <p>Signalements proches de vous pouvant correspondre</p>
+      <ion-item *ngFor="let s of signalementsProches" [class.greyed]="!s.online" (click)="detail(s.id)">
+        <h2>{{s.titre}}</h2>
+        <h3>{{s.adresse}}</h3>
+      </ion-item>
+    </ion-list>
+
+    <ion-list>
+      <ion-item>
+          <ion-label stacked>Type de signalement* :</ion-label>
+          <ion-select formControlName="category" interface="popover" (ionChange)="categoryChanged()">
+            <ion-option *ngFor="let categoryKey of categoriesKeys(categories)" [value]="categoryKey">{{categories[categoryKey]}}</ion-option>
+          </ion-select>
+        </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Que voulez-vous signaler* ?</ion-label>
+        <ion-input formControlName="titre" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Lieu/adresse du signalement* :</ion-label>
+        <ion-input formControlName="adresse"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Détail (optionnel) :</ion-label>
+        <ion-textarea formControlName="texte" rows="8"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <button ion-button color="secondary" (click)="getImage()" full large>Ajouter une image</button>
+        <button ion-button color="secondary" (click)="takeImage()" full large>Prendre une photo</button>
+      </ion-item>
+    </ion-list>
+
+    <div padding>
+      <button ion-button [disabled]="!OneForm.valid" color="danger" block (click)="addSignal()">Envoyer</button>
+    </div>
+
+
+    <img [src]="sanitizedImageUrl" *ngIf="sanitizedImageUrl" alt="Image" width="300"/>
+
+
+  </form>
+
+
+</ion-content>

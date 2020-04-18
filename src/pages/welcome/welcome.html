@@ -1,0 +1,41 @@
+<!--
+  Generated template for the WelcomePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Bienvenue</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<ion-grid>
+    <ion-row>
+      <ion-col>
+      	<img src="assets/img/logoMenu.png"/>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid >
+    <ion-row>
+        <ion-col center text-center>
+          <button ion-button full color="light" (click)="login()">J'ai déjà un compte</button>
+        </ion-col>
+      </ion-row>
+    <ion-row>
+      <ion-col center text-center>
+        <button ion-button full color="success" (click)="chooseVille()">Choisir mon organisme favori</button>
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+
+</ion-content>

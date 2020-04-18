@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Fermer</button>
+    </ion-buttons>
+    <ion-title>Nouvelles</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding overflow-scroll="true">
+  <div text-left>
+    <h1>{{titre}}</h1>
+    <div text-center>
+      <img src="{{ photo }}"/>
+    </div>
+    <div [innerHtml]="texte" text-left></div>
+  </div>
+
+  <div *ngIf="documents?.length > 0">
+    <h3>Documents</h3>
+
+    <ion-card *ngFor="let document of documents" href="" (click)="openURL(document.url)">
+      <div class="video__wrapper" style="position: relative">
+        <div *ngIf="document.video" style="background: rgba(0,0,0, .25); position: absolute; display: flex; align-items: center; width: 100%; height: 100%; justify-content: center;">
+          <ion-icon name="play" style="width: 50px; height: 50px; color: white !important; font-size: 4rem; display: flex; align-items: center; justify-content: center;
+"></ion-icon>
+        </div>
+        <img src="{{ document.thumb }}" width="100"/>
+      </div>
+      <p style="padding: 1rem; text-align: center;">{{document.name}}</p>
+    </ion-card>
+  </div>
+  <button ion-button color="danger" full (click)="dismiss()">RETOUR</button>
+</ion-content>

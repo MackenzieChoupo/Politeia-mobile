@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Sondages</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content no-padding>
+
+
+  <ion-list *ngIf="sondage.id">
+    <ion-list-header>
+      Sondage en cours
+    </ion-list-header>
+    <form [formGroup]="OneForm">
+      
+
+      <ion-card>
+        <ion-card-header text-wrap>
+          <p>Du {{sondage.date_debut}} au {{sondage.date_fin}}</p>
+          <b>{{sondage.question}}</b>
+        </ion-card-header>
+
+        <ion-card-content>
+
+          <button [hidden]="switchVote" ion-button block (click)="switchVoter()">Je veux voter</button>
+
+          <div [hidden]="!switchVote">
+
+            <div [hidden]="switchQuestion">
+
+              <p *ngIf="sondage.question_cible">{{sondage.question_cible}}
+                <br>
+                <button ion-button (click)="switchSuiteOn()">Oui</button>
+                <button ion-button (click)="switchSuiteOff()">Non</button>
+              </p>
+            </div>
+
+            <div [hidden]="switchQuestionSuite" >
+
+              <ion-list radio-group formControlName="qcm" [(ngModel)]="value">
+
+
+                <ion-item *ngFor="let r of sondage.reponses">
+                  <ion-label>{{r.texte}}</ion-label>
+                  <ion-radio checked="false" value="{{r.id}}"></ion-radio>
+                </ion-item>
+
+
+                <button ion-button block color="danger" [disabled]="!OneForm.valid" (click)="voter(sondage.id)">Je vote</button>
+              </ion-list>
+
+            </div>
+
+
+          </div>
+
+        </ion-card-content>
+      </ion-card>
+    </form>
+
+
+  </ion-list>
+
+
+  <ion-list>
+
+    <ion-list-header>
+      Résultats
+    </ion-list-header>
+
+    <ion-card [hidden]="cacheGraph">
+      <ion-card-header text-wrap>
+        Résultats du sondage : {{afficheSondage.question}}
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #pieCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-item *ngIf="resultatsSondages == 0">
+      <p text-wrap>{{ sondage.length == 0  ? "Aucun résultat de sondage n'est disponible pour l'instant." : "Merci pour votre participation, les résultats seront disponibles le " + sondage.date_fin }}</p>
+    </ion-item>
+
+
+    <ion-item *ngFor="let s of resultatsSondages">
+
+
+      <h2 text-wrap>{{s.question}}</h2>
+      <p>Du {{s.date_debut}} au {{s.date_fin}}</p>
+
+
+      <button ion-button item-end outline (click)="voirSondage(s)">Voir</button>
+    </ion-item>
+
+
+  </ion-list>
+
+</ion-content>

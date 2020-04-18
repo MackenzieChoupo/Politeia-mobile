@@ -1,0 +1,86 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Fermer</button>
+    </ion-buttons>
+    <ion-title>{{ville}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+
+  <img src="{{image}}" />
+
+  <div>
+
+    <h1>{{ville}}</h1>
+    <ion-row>
+      <ion-col col-6>
+        <p>
+          {{adresse}}
+          <br> {{cp}} {{ville}}
+        </p>
+        <p>
+
+          <ion-icon name="mail"></ion-icon> <a href="mailto:{{email}}">{{email}}</a>
+          <br>
+          <ion-icon name="link"></ion-icon> <a href="" (click)="openURL(site)">{{site}}</a>
+        </p>
+
+      </ion-col>
+      <ion-col col-6>
+        <p>
+          <a ion-button small icon-left href="tel:{{tel}}">
+            <ion-icon name="call"></ion-icon>{{tel}}</a>
+          <br>
+          <span *ngIf="telAnimation">
+      Service Animation : <br>
+      <a ion-button outline small href="tel:{{telAnimation}}" ><ion-icon name="call"></ion-icon>{{telAnimation}}</a><br>
+    </span>
+          <span *ngIf="telUrbanisme">
+
+       Service Urbanisme : <br>
+      <a ion-button outline small href="tel:{{telUrbanisme}}" ><ion-icon name="call"></ion-icon>{{telUrbanisme}}</a>
+    </span>
+        </p>
+
+
+      </ion-col>
+    </ion-row>
+
+
+    <h4>HORAIRES</h4>
+
+    <ion-row *ngFor="let h of horaires">
+      <ion-col col-6>
+
+        <div class="fullFlex">{{h.jour}}</div>
+
+      </ion-col>
+      <ion-col col-6>
+        <div>{{h.detail}}</div>
+      </ion-col>
+    </ion-row>
+
+    <ion-card *ngIf="planning">
+      <ion-list>
+      <ion-item *ngFor="let p of planning">
+        <h2>{{p.titre}}</h2>
+        <a *ngIf="p.urlLink" (click)="openURL(p.urlLink)" ion-button item-end outline>Site</a>
+        <button *ngIf="p.pdf" (click)="openPDF(p.pdf)" ion-button item-end outline download>Télécharger</button>
+
+      </ion-item>
+    </ion-list>
+    </ion-card>
+
+
+    <div [innerHtml]="infos"></div>
+
+  </div>
+  <button ion-button color="danger" full (click)="dismiss()">RETOUR</button>
+
+</ion-content>

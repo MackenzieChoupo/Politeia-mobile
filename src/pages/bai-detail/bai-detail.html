@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Fermer</button>
+    </ion-buttons>
+    <ion-title>Réponses</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+
+
+  <ion-card >
+    <ion-card-content>
+      <button ion-button color="primary" block outline (click)="switchR()">Tapez ici pour répondre</button>
+     
+
+      <form [formGroup]="OneForm" [hidden]="!switchReponse">
+
+        <ion-list>
+
+          <ion-item>
+            <ion-label stacked>Ma réponse</ion-label>
+            <ion-textarea formControlName="texte" type="text" rows="3"></ion-textarea>
+          </ion-item>
+
+        </ion-list>
+
+        <div padding>
+          <button ion-button color="primary" block (click)="addReponse()">Envoyer</button>
+        </div>
+
+      </form>
+    </ion-card-content>
+
+  </ion-card>
+
+
+  <ion-card *ngFor="let r of reponses">
+    <ion-item>
+      <p>{{r.citoyen}} le {{r.date}}</p>
+      <h2 text-wrap>{{r.texte}}</h2>
+
+    </ion-item>
+
+
+  </ion-card>
+
+</ion-content>

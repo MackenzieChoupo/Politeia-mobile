@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Signalements</ion-title>
+  </ion-navbar>
+
+
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="vuSelected" color="primary">
+
+      <ion-segment-button value="recents" (click)="sortByDate()">
+        + Récents
+      </ion-segment-button>
+      <ion-segment-button value="plus" (click)="sortByConfirmations()">
+        + Confirmés
+      </ion-segment-button>
+
+    </ion-segment>
+  </ion-toolbar>
+  <ion-fab right style="bottom: -25px !important;">
+    <button ion-fab mini color="danger" (click)="signalAdd()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-header>
+<ion-content no-padding>
+
+  <ion-grid no-padding>
+
+    <ion-row no-padding>
+      <ion-col col-12 col-md-8>
+        <ion-list>
+          <ion-item *ngFor="let s of signalements" [class.greyed]="!s.online">
+            <div class="signal__top">
+            <p>{{s.date}}
+              <span>
+              <ion-badge *ngIf="s.etat == 1 && s.online" item-end color="danger">nouveau</ion-badge>
+              <ion-badge *ngIf="s.etat == 2 && s.online" item-end color="danger">vu</ion-badge>
+              <ion-badge *ngIf="s.etat == 3 && s.online" item-end>en cours</ion-badge>
+              <ion-badge *ngIf="s.etat == 4 && s.online" item-end>traité</ion-badge>
+              <ion-badge *ngIf="!s.online && s.etatModere < 3" item-end color="dark">en cours de validation</ion-badge>
+              <ion-badge *ngIf="!s.online && s.etatModere == 3 " item-end color="dark">archivé par le modérateur</ion-badge>
+              <ion-badge *ngIf="!s.online && s.etatModere == 4 " item-end color="dark">supprimé par le modérateur</ion-badge>
+                </span>
+
+               <span *ngIf="s.categoryId != null"> -
+                  <ion-badge class="badge--squared" item-end [color]="getSignalTypeColor(s.categoryId)">{{ getSignalTypeString(s.categoryId)}}</ion-badge>
+               </span>  
+
+            </p>
+          </div>
+          <div class="signal__bottom">
+            <div class="signal__bottom__left">
+                <h2 (click)="detail(s.id)">{{s.titre}}</h2>
+                <h3>{{s.adresse}}</h3>
+
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <p (click)="detail(s.id)">Taper pour plus de détail...</p>
+                  <button *ngIf="!s.nb_confirmation && s.online" ion-button  item-end (click)="confirmer(s.id)">Confirmer</button>
+                  <button *ngIf="s.nb_confirmation && s.online" ion-button  item-end (click)="confirmer(s.id)">Confirmer ({{s.nb_confirmation}})</button>  
+                </div>
+            </div>
+          </div>
+          </ion-item>
+
+
+        </ion-list>
+
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>

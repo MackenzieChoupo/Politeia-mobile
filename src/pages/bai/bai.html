@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Boîte à idées</ion-title>
+  </ion-navbar>
+
+
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="vuSelected" color="primary">
+
+      <ion-segment-button value="education" (click)="getQuestionsByTheme(1)">
+        Education et jeunesse
+      </ion-segment-button>
+      <ion-segment-button value="social" (click)="getQuestionsByTheme(2)">
+        Social
+      </ion-segment-button>
+      <ion-segment-button value="urbanisme" (click)="getQuestionsByTheme(3)">
+        Urbanisme travaux
+      </ion-segment-button>
+      <ion-segment-button value="animation" (click)="getQuestionsByTheme(4)">
+        Animation
+      </ion-segment-button>
+      
+    </ion-segment>
+  </ion-toolbar>
+
+
+  </ion-header>
+
+
+<ion-content padding>
+
+  <h1 *ngIf="vuSelected == 'education'">Education et jeunesse</h1>
+  <h1 *ngIf="vuSelected == 'social'">Social</h1>
+  <h1 *ngIf="vuSelected == 'urbanisme'">Urbanisme et travaux</h1>
+  <h1 *ngIf="vuSelected == 'animation'">Animation</h1>
+
+  <p *ngIf="isEmpty == 0"> Il n'y a pas de question sur ce thème pour le moment.</p>
+
+	  <ion-card *ngFor="let q of questions" (click)="detailQuestion(q.id)">
+  <ion-item>
+    <p>{{q.date_debut}} au {{q.date_fin}}</p>
+    <h2 text-wrap>{{q.titre}}</h2>
+
+  </ion-item>
+
+
+  <ion-row>
+
+    <ion-col center text-right>
+      <ion-note color="danger">
+        détail
+      </ion-note>
+    </ion-col>
+  </ion-row>
+
+</ion-card>
+
+
+</ion-content>

@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Organisme à signaler</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+	<form [formGroup]="OneForm">
+
+<ion-list>
+	<p>Utilisez ce formulaire pour nous informer d'un organisme que vous souhaiteriez voir disponible sur Politeia France</p>
+
+  <ion-item>
+    <ion-label stacked>Nom *</ion-label>
+    <ion-input formControlName="mairie" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Code postal</ion-label>
+    <ion-input formControlName="cp" type="text" ></ion-input>
+  </ion-item>
+
+</ion-list>
+
+ <div padding>
+    <button ion-button [disabled]="!OneForm.valid" color="primary" block (click)="addmairie()">Envoyer</button>
+  </div>
+
+</form>
+
+</ion-content>

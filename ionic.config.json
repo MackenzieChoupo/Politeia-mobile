@@ -1,0 +1,7 @@
+{
+  "name": "politeia",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

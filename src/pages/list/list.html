@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Mes organismes</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content (swipe)="swipeEvent($event)">
+  <ion-row>
+    <ion-col col-12>
+  <button ion-button block icon-start color="secondary" (click)="searchMairie($event)">
+    <ion-icon name="add"></ion-icon>
+    Ajouter
+  </button>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-list (swipe)="swipeEvent($event)">
+    <ion-item *ngFor="let ville of villes" tappable ion-item (click)="clickOnCity($event,ville)">
+      <ion-icon name="eye" item-left color="primary"></ion-icon>
+      <span>
+      {{ville.nom}}
+    </span>
+
+
+      <button ion-button clear *ngIf="!ville.encours" class="item-note" icon-end (click)="villeDel($event, ville)">
+        <ion-icon name="close" item-right></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+
+  <div padding><p>Note : la mise à jour des données sur cette liste peut prendre quelques secondes.</p>
+  </div>
+
+</ion-content>

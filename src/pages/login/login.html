@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Connexion</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <form [formGroup]="OneForm">
+
+<ion-list>
+
+  <ion-item>
+    <ion-label stacked>Identifiant</ion-label>
+    <ion-input formControlName="login" type="text" value="{{login}}"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Mot de passe</ion-label>
+    <ion-input formControlName="passwd" type="password" value="{{passwd}}"></ion-input>
+  </ion-item>
+
+</ion-list>
+
+ <div padding>
+    <button ion-button color="primary" block (click)="saveLogin()">Connexion</button>
+    <p text-center><a href="#" (click)="goToChooseVille()">Ou créez un compte gratuit</a></p>
+    <p text-center><a href="#" style="color : red !important" (click)="passwordPrompt()">Mot de passe oublié</a></p>
+
+  </div>
+
+</form>
+
+
+
+</ion-content>

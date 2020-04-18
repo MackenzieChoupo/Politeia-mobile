@@ -1,0 +1,62 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>Créer un compte</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+  <ion-content padding>
+
+    <form [formGroup]="OneForm">
+      <p>
+        Merci de remplir soigneusement les champs ci-dessous afin de profiter pleinement des fonctionnalités de l'application.
+      </p>
+
+  <ion-list>
+  <ion-item>
+      <ion-label stacked>Nom *</ion-label>
+      <ion-input formControlName="nom" type="text" value=""></ion-input>
+    </ion-item>
+     <ion-item *ngIf="OneForm.controls.nom.hasError('required') && OneForm.controls.nom.touched">
+    <p>Vous devez renseigner votre nom !</p>
+  </ion-item>
+
+     <ion-item>
+      <ion-label stacked>Prénom *</ion-label>
+      <ion-input formControlName="prenom" type="text" value=""></ion-input>
+    </ion-item>
+     <ion-item *ngIf="OneForm.controls.prenom.hasError('required') && OneForm.controls.prenom.touched">
+    <p>Vous devez renseigner votre prenom !</p>
+  </ion-item>
+
+  <ion-item>
+      <ion-label stacked>Adresse</ion-label>
+      <!--   <ion-input formControlName="adresse" type="text" value=""></ion-input> -->
+      <ion-input formControlName="adresse" type="text" value="" (input)="updateSearchResults()"></ion-input>
+    </ion-item>
+
+    <ion-item class="listAdress" [hidden]="autocompleteItems && autocompleteItems.length == 0">
+      <ion-list>
+        <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
+          {{ item.description }}
+        </ion-item>
+      </ion-list>
+    </ion-item>
+
+    <p class="hintSignup">Si vous ne remplissez pas ce champ vous ne pourrez pas profiter de l'intégralité des fonctionnalités de l'application</p>
+
+
+
+  </ion-list>
+
+  <div padding>
+      <button ion-button [disabled]="!OneForm.valid" color="primary" block (click)="goToNextStep()" >Suivant</button>
+    </div>
+
+
+
+
+  </form>
+
+
+  </ion-content>
