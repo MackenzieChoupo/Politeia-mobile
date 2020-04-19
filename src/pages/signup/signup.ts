@@ -81,6 +81,7 @@ export class SignupPage {
 	enregistrer() {
 
 		if (this.OneForm.valid) {
+			console.log('Test to verify => ', this.OneForm);
 
 			let loading = this.loadingCtrl.create({
 				content: 'Veuillez patienter...'
@@ -147,7 +148,7 @@ export class SignupPage {
 
 							global.token = btoa(this.OneForm.get('email').value + ':' + this.OneForm.get('passwd').value);
 							global.villeEncours = this.ville;
-							console.log(global.token);
+							console.log('Global token => ',global.token);
 							
 							this.storage.set('storeToken', global.token);
 							this.storage.set('storeVillePrincipale', global.villeEncours);

@@ -244,7 +244,7 @@ export class RestApiProvider {
 
     let request = this.http.post(url, dataPost).map(res => res.json());
 
-    //console.log('signup Post Api: ', data);
+    console.log('signup Post Api: ', data);
 
     return request;
 
