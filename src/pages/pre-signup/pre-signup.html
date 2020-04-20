@@ -29,7 +29,7 @@
     <p>Vous devez renseigner votre prenom !</p>
   </ion-item>
 
-  <ion-item> 
+  <ion-item>
       <ion-label stacked>Adresse</ion-label>
       <!--   <ion-input formControlName="adresse" type="text" value=""></ion-input> -->
       <ion-input formControlName="adresse" type="text" value="" (input)="updateSearchResults()"></ion-input>
@@ -50,7 +50,7 @@
   </ion-list>
 
   <div padding>
-      <button ion-button [disabled]="!OneForm.valid" color="primary" block (click)="enregistrer()" >Créer mon compte</button>
+      <button ion-button [disabled]="!OneForm.valid" color="primary" block (click)="goToNextStep()" >Suivant</button>
     </div>
 
 

@@ -77,64 +77,6 @@ export class PreSignupPage {
          addresse : this.OneForm.get('adresse').value
        })
      }
-     enregistrer(){
-       if(this.OneForm.valid){
-        let loading = this.loadingCtrl.create({
-          content: 'Veuillez patienter...'
-        });
-  
-        loading.present();
-        this.restApi.infosMairie(this.ville).subscribe(
-
-          data => {
-  
-  
-            if(this.latitude != null && this.longitude != null){
-            this.userData = {
-              "user": {
-                "nom": this.OneForm.get('nom').value,
-                "prenom": this.OneForm.get('prenom').value,
-                "mairie": this.ville,
-                "date_naissance": "1970-01-01",
-                "adresse": this.OneForm.get('adresse').value,
-                "sexe": 'h',
-                "ville": data['ville'],
-                "latitude" : this.latitude,
-                "longitude" : this.longitude
-              }
-            };
-          }else {
-            this.userData = {
-              "user": {
-                "nom": this.OneForm.get('nom').value,
-                "prenom": this.OneForm.get('prenom').value,
-                "mairie": this.ville,
-                "date_naissance": "1970-01-01",
-                "adresse": this.OneForm.get('adresse').value,
-                "sexe": 'h',
-                "ville": data['ville']
-              }
-            };
-          }
-  
-            console.log("userdatas Done", this.userData);
-  
-            // Debut signup --------------------------------------------------
-
-            if(this.userData.user.nom && this.userData.user.prenom){
-              loading.dismiss();
-              this.storage.set('Credentials', this.userData);
-              this.storage.set('storeVillePrincipale', global.villeEncours);
-              this.navCtrl.setRoot(AidePage);
-          }else{
-              console.log("Une erreur s'est produite !");
-              console.log("Signup data err: ", this.userData);
-              loading.dismiss();
-          }},
-          );
-       }
-       
-     }
 
      updateSearchResults(){
       console.log('updating search results');
